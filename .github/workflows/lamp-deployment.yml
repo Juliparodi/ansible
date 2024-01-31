@@ -2,16 +2,21 @@ name: LAMP Deployment
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
     name: Ansible Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main
         with:
-          targets: "ansible/playbook.yml ansible/inventory.yml"
+          targets: |
+            ansible/playbook.yml
+            ansible/inventory.yml
+
           args: "-c ansible/.ansible-lint"
