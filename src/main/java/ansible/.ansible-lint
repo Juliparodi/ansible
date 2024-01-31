@@ -1,0 +1,2 @@
+warn_ist:
+    - '602' # Don't compare to empty string
